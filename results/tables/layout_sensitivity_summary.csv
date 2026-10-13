@@ -1,0 +1,4 @@
+architecture,placements,mean_cx,max_cx,frac_zero_swap,max_distance
+processor_A,20,3.4,7,0.4,3
+processor_B,72,3.8333333333333335,10,0.3333333333333333,4
+processor_D,132,4.181818181818182,7,0.2727272727272727,3
