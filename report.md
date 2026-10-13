@@ -93,4 +93,4 @@ Caveats: D is designed around that one circuit; 8 of its 12 qubits are unused in
 STO-3G and a single bond length; synthetic noise only; generic (non-optimized) 4-qubit circuit; idealized readout calibration; ZNE with few scale factors; D validated in simulation on one circuit family.
 
 ## 9. Reproducibility
-Qiskit 2.5.2, Qiskit Aer 0.17.2 (pinned in `requirements.txt`). `python -c "from src import run_full_benchmark; run_full_benchmark()"` then `python scripts/build_docs.py`.
+Qiskit 2.5.2, Qiskit Aer 0.17.2 (pinned in `requirements.txt`). `python -c "from src import run_full_benchmark; run_full_benchmark()"` then `python -m src.build_docs`.
