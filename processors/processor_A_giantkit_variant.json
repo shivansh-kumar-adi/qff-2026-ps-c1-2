@@ -1,0 +1,15 @@
+{
+  "name": "processor_A_giantkit_variant",
+  "num_qubits": 5,
+  "coupling_map": [[0,1],[1,2],[2,3],[3,4]],
+  "bidirectional": true,
+  "basis_gates": ["rz", "sx", "x", "cx"],
+  "noise": {
+    "type": "fixed_synthetic_depolarizing",
+    "one_qubit_depolarizing": 0.001,
+    "one_qubit_gates": ["sx", "x"],
+    "cx_depolarizing": 0.005,
+    "readout_bitflip": 0.01
+  },
+  "source": "Updated Challenge Kit sec. 3.1 text: 5-qubit nearest-neighbor linear chain 0-1-2-3-4"
+}
