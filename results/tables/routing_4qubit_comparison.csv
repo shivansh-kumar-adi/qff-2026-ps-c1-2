@@ -1,0 +1,4 @@
+architecture,logical_qubits,physical_qubits,logical_cx,ansatz,compiled_cx,swap_count,compiled_depth,one_qubit_gates,physical_qubits_used
+processor_A,4,5,6,"full_entangling_4q (routing stress test, not UCCSD)",12,2,26,36,4
+processor_B,4,9,6,"full_entangling_4q (routing stress test, not UCCSD)",9,1,18,36,4
+processor_D,4,12,6,"full_entangling_4q (routing stress test, not UCCSD)",6,0,15,36,4
