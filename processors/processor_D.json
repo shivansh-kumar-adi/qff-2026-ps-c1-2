@@ -1,0 +1,23 @@
+{
+  "name": "processor_D",
+  "num_qubits": 12,
+  "topology_type": "chem_hex_core_ring",
+  "description": "Chemistry-optimized 12-qubit architecture with a fully-connected 4-qubit active orbital core (K4) and an 8-qubit outer ring for syndrome detection and readout isolation.",
+  "coupling_map": [
+    [0, 1], [0, 2], [0, 3], [1, 2], [1, 3], [2, 3],
+    [0, 4], [1, 5], [2, 6], [3, 7],
+    [4, 8], [5, 9], [6, 10], [7, 11],
+    [8, 9], [9, 10], [10, 11], [11, 8]
+  ],
+  "bidirectional": true,
+  "basis_gates": ["rz", "sx", "x", "cx"],
+  "noise": {
+    "type": "fixed_synthetic_depolarizing",
+    "one_qubit_depolarizing": 0.001,
+    "one_qubit_gates": ["sx", "x"],
+    "cx_depolarizing": 0.005,
+    "readout_bitflip": 0.01
+  },
+  "bottleneck_addressed": "Eliminates routing SWAP overhead and compiler latency for up to 4-orbital molecular chemistry Hamiltonians while providing ancilla connectivity for parity syndrome checks.",
+  "source": "Team custom design satisfying Phase 1 Section 11.1 guidelines (<= 12 qubits, explicit coupling graph, same nominal gate-error assumptions)."
+}
