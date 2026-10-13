@@ -1,0 +1,25 @@
+{
+  "molecule": "H2",
+  "mapping": "jordan_wigner_full_orbitals",
+  "num_qubits": 4,
+  "bond_length_angstrom": 0.735,
+  "nuclear_repulsion_hartree": 0.7199689944489797,
+  "description": "Full 4-orbital Jordan-Wigner mapped Hamiltonian for H2, representing all two-electron active orbital couplings to benchmark multi-qubit routing across Processor A, B, and D.",
+  "pauli_terms": {
+    "IIII": -0.81261000,
+    "ZIII": 0.17120100,
+    "IZII": 0.17120100,
+    "IIZI": -0.22279650,
+    "IIIZ": -0.22279650,
+    "ZZII": 0.16862325,
+    "ZIZI": 0.12054625,
+    "ZIIZ": 0.16586800,
+    "IZZI": 0.16586800,
+    "IZIZ": 0.12054625,
+    "IIZZ": 0.17434925,
+    "XXYY": 0.04532100,
+    "YYXX": 0.04532100,
+    "XYYX": -0.04532100,
+    "YXXY": -0.04532100
+  }
+}
