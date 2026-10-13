@@ -1,0 +1,13 @@
+{
+  "molecule": "H2",
+  "basis": "sto-3g",
+  "geometry": [
+    ["H", [0.0, 0.0, 0.0]],
+    ["H", [0.0, 0.0, 0.735]]
+  ],
+  "bond_length_angstrom": 0.735,
+  "nuclear_repulsion_hartree": 0.7199689944489797,
+  "chemical_accuracy_threshold_hartree": 0.0016,
+  "fci_exact_ground_energy_hartree": -1.1373060357534,
+  "description": "Standard STO-3G equilibrium hydrogen molecule benchmark instance for QFF PS-C1."
+}
