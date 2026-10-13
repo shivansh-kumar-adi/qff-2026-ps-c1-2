@@ -4,7 +4,7 @@
 **Track:** Quantum Chemistry - PS-C1 (Phase 1)
 
 We estimate the ground-state energy of H2 (STO-3G, R = 0.735 A) with VQE, run it under the organizers' fixed noise model on Processor A (5-qubit tree) and Processor B (9-qubit graph), study how coupling topology changes routing cost, and propose a 12-qubit Processor D.
-**Every number below is read from `results/tables/*.csv` by `scripts/build_docs.py`.**
+**Every number below is read from `results/tables/*.csv` by `src/build_docs.py`.**
 
 ## 1. Headline results
 
@@ -113,7 +113,7 @@ README.md  report.md  main.ipynb  requirements.txt
 data/raw, data/processed         H2 geometry and Hamiltonians (JSON)
 processors/                      A, B, D (+ Giant-Kit variants) as JSON coupling maps
 src/problem.py processors.py routing.py metrics.py visualization.py
-scripts/build_docs.py            regenerates README/report numbers from the CSVs
+src/build_docs.py            regenerates README/report numbers from the CSVs
 results/tables, results/figures   all generated outputs
 assets/qff_phase1_latex_images   LaTeX equation PNGs (Starter Guide rendering note)
 ```
@@ -124,7 +124,7 @@ assets/qff_phase1_latex_images   LaTeX equation PNGs (Starter Guide rendering no
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt                     # pinned: qiskit==2.5.2, qiskit-aer==0.17.2
 python -c "from src import run_full_benchmark; run_full_benchmark()"   # ~30 s
-python scripts/build_docs.py                        # refresh README/report numbers
+python -m src.build_docs                        # refresh README/report numbers
 jupyter nbconvert --execute --inplace main.ipynb
 ```
 
