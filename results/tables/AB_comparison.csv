@@ -1,0 +1,5 @@
+problem_id,instance_id,architecture,logical_qubits,physical_qubits,objective_or_accuracy,classical_reference,approximation_or_error,cx_count,depth,swap_count,shots,noise_model
+PS-C1,H2_R0.735_HEA_reps=1,processor_A,2,5,-1.111738,-1.13730604,0.025568,1,9,0,4096,"1q_depol=0.001, cx_depol=0.005, readout=0.01"
+PS-C1,H2_R0.735_HEA_reps=1,processor_B,2,9,-1.111738,-1.13730604,0.025568,1,9,0,4096,"1q_depol=0.001, cx_depol=0.005, readout=0.01"
+PS-C1,H2_R0.735_HEA_reps=2,processor_A,2,5,-1.106925,-1.13730604,0.030381,2,14,0,4096,"1q_depol=0.001, cx_depol=0.005, readout=0.01"
+PS-C1,H2_R0.735_HEA_reps=2,processor_B,2,9,-1.106925,-1.13730604,0.030381,2,14,0,4096,"1q_depol=0.001, cx_depol=0.005, readout=0.01"
