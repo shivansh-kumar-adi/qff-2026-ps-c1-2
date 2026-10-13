@@ -1,0 +1,16 @@
+{
+  "name": "processor_B",
+  "num_qubits": 9,
+  "topology_type": "heavy_hex_sparse_graph",
+  "coupling_map": [[0,1],[1,2],[1,6],[2,3],[2,6],[2,5],[3,4],[4,5],[5,6],[6,7],[6,8],[8,0]],
+  "bidirectional": true,
+  "basis_gates": ["rz", "sx", "x", "cx"],
+  "noise": {
+    "type": "fixed_synthetic_depolarizing",
+    "one_qubit_depolarizing": 0.001,
+    "one_qubit_gates": ["sx", "x"],
+    "cx_depolarizing": 0.005,
+    "readout_bitflip": 0.01
+  },
+  "source": "QFF 2026 Processor A/B Benchmark Configuration (Simulation-derived 9-qubit topology, 12 edges)"
+}
