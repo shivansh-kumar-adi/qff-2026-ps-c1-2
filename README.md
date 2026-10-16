@@ -12,7 +12,7 @@ We estimate the ground-state energy of H2 (STO-3G, R = 0.735 A) with VQE, run it
 - **Ideal VQE** (statevector, COBYLA) reaches the exact energy to ~1e-7 mHa for all three ansatze.
 - **Required A vs B benchmark:** the 2-qubit circuit needs only one CX, so both processors compile it identically (0 SWAPs, same CX/depth) and give the same noisy energy. The raw noisy error is about 24.4 mHa, far above chemical accuracy.
 - **Error mitigation (Processor A, compact 1-parameter ansatz):** readout inversion + parity postselection + linear ZNE (scales 1 and 3, chosen in advance) lowers the mean bias to **1.90 mHa at the organizer's 4096 shots**, but run-to-run std is **9.2 mHa**, so only **1/10** individual runs are within 1.6 mHa. With 32768 shots (our extra setting) the mean bias is 0.46 mHa, std 1.80 mHa, and 7/10 runs are within 1.6 mHa. **We therefore do not claim reliable chemical accuracy; we claim a large, measured bias reduction whose precision is shot-limited.**
-- **Topology matters once the circuit is bigger.** On a 4-qubit all-pairs-style entangling circuit (a routing stress test, not a chemistry result) compiled CX / SWAPs / depth are A: 12/2/26, B: 9/1/18, D: 6/0/15.
+- **Topology matters once the circuit is bigger.** On a 4-qubit all-pairs-style entangling circuit (a routing stress test, not a chemistry result) compiled CX / SWAPs / depth are A: 12/2/26, B: 9/1/18, D: 6/0/15. Under noise this translates into a small but statistically clear fidelity ordering: A 0.9858 < B 0.9877 < D 0.9896 (paired differences vs A: B +0.0019, D +0.0038; s.e. about 0.0003).
 
 ## 2. Problem and method
 
@@ -77,6 +77,18 @@ Reading it honestly: readout inversion and parity postselection give robust, lar
 | Processor D | 12 | 6 | 6 | 0 | 15 |
 
 A is a tree with no cycles, so the 4-cycle and chords cannot be embedded without SWAPs; B has cycles and needs fewer; D's K4 core hosts the pattern directly.
+
+**Effect on noisy performance.** We ran the same circuit under the organizer noise model (4096 shots, same transpile settings) with 10 random-but-fixed parameter sets x 10 simulator seeds and compared the noisy output distribution with the ideal one (Hellinger fidelity; 1 is perfect). Each processor sees identical parameters and seeds, so the paired difference against A is meaningful:
+
+| Processor | Compiled CX | SWAPs | Depth | Hellinger fidelity vs ideal (mean +/- std, 100 runs) | Paired gain vs A (+/- s.e.) |
+|---|:-:|:-:|:-:|:-:|:-:|
+| Processor A | 12 | 2 | 24 | 0.9858 +/- 0.0072 | - |
+| Processor B | 9 | 1 | 16 | 0.9877 +/- 0.0060 | +0.0019 +/- 0.0003 |
+| Processor D | 6 | 0 | 13 | 0.9896 +/- 0.0053 | +0.0038 +/- 0.0003 |
+
+Every extra SWAP adds 3 noisy CX gates, and the fidelity follows the CX count: A (12 CX) < B (9 CX) < D (6 CX). The absolute gaps are small (a few tenths of a percent of fidelity) because 12 CX at 0.5% depolarizing error is still a mild circuit; the effect grows with circuit size. The depth shown here is for bound parameters, so it can be slightly lower than in the parametric table above.
+
+![4q noisy fidelity](results/figures/routing_4q_noisy_fidelity.png)
 
 **Placement sensitivity of the 2-qubit circuit** (all ordered physical placements, forced initial layout):
 

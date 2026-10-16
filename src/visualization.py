@@ -149,3 +149,27 @@ def render_latex_assets():
         plt.axis("off")
         plt.savefig(ASSETS_DIR / fname, bbox_inches="tight", transparent=True)
         plt.close(fig)
+
+
+def plot_4q_noisy_fidelity(df: pd.DataFrame):
+    """Noisy Hellinger fidelity of the 4-qubit stress-test circuit per processor (mean +/- std)."""
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    fig, axs = plt.subplots(1, 2, figsize=(10, 4.2), dpi=150)
+    labels = [a.replace("processor_", "Proc ") for a in df["architecture"]]
+    axs[0].bar(labels, df["hellinger_fidelity_mean"], yerr=df["hellinger_fidelity_std"], capsize=4,
+               color="#4c78a8", edgecolor="black")
+    lo = float((df["hellinger_fidelity_mean"] - df["hellinger_fidelity_std"]).min())
+    axs[0].set_ylim(max(0.0, lo - 0.02), 1.0)
+    axs[0].set_ylabel("Hellinger fidelity vs ideal (higher is better)")
+    axs[0].set_title("4-qubit circuit under noise")
+    axs[0].grid(axis="y", linestyle=":", alpha=0.6)
+    axs[1].scatter(df["compiled_cx"], df["hellinger_fidelity_mean"], s=80, color="#f58518", edgecolor="black")
+    for x, y, l in zip(df["compiled_cx"], df["hellinger_fidelity_mean"], labels):
+        axs[1].annotate(l, (x, y), textcoords="offset points", xytext=(6, 4))
+    axs[1].set_xlabel("Compiled CX count")
+    axs[1].set_ylabel("Hellinger fidelity")
+    axs[1].set_title("More CX (SWAPs) -> lower fidelity")
+    axs[1].grid(linestyle=":", alpha=0.6)
+    plt.tight_layout()
+    plt.savefig(FIG_DIR / "routing_4q_noisy_fidelity.png", bbox_inches="tight")
+    plt.close(fig)

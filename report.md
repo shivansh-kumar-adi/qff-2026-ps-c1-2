@@ -63,6 +63,18 @@ Graph facts:
 
 A tree cannot embed a 4-cycle or its chords, so SWAPs are unavoidable; each SWAP costs 3 CX, each CX carries 0.5% depolarizing error. B's cycles reduce but do not remove the overhead.
 
+Noisy performance of the same circuit (organizer noise model, 4096 shots, 10 fixed random parameter sets x 10 seeds = 100 runs per processor; metric: Hellinger fidelity between noisy and ideal output distributions). Parameters and seeds are identical across processors, so the paired difference against A is meaningful:
+
+| Processor | Compiled CX | SWAPs | Depth | Hellinger fidelity vs ideal (mean +/- std, 100 runs) | Paired gain vs A (+/- s.e.) |
+|---|:-:|:-:|:-:|:-:|:-:|
+| Processor A | 12 | 2 | 24 | 0.9858 +/- 0.0072 | - |
+| Processor B | 9 | 1 | 16 | 0.9877 +/- 0.0060 | +0.0019 +/- 0.0003 |
+| Processor D | 6 | 0 | 13 | 0.9896 +/- 0.0053 | +0.0038 +/- 0.0003 |
+
+Fidelity ordering follows compiled CX count (A < B < D). The gaps are small in absolute terms (a few tenths of a percent) because this circuit has only 6 logical CX; they are nonetheless many standard errors wide in the paired comparison. Depth here is for bound parameters and can be slightly below the parametric-circuit depth in the previous table. Larger circuits would amplify the effect.
+
+![4q noisy fidelity](results/figures/routing_4q_noisy_fidelity.png)
+
 Placement sensitivity for the 2-qubit circuit (ordered physical placements, forced layout):
 
 | Processor | Ordered placements of 2 logical qubits | Mean CX | Max CX | Zero-SWAP placements | Max distance |
